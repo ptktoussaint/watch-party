@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watch Party</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Tela de entrada -->
+  <div id="join-screen" class="screen">
+    <div class="card">
+      <h1>🎬 Watch Party</h1>
+      <p class="subtitle">Assista vídeos do YouTube em sincronia com seus amigos</p>
+      <form id="join-form">
+        <label for="name-input">Seu nome</label>
+        <input id="name-input" type="text" placeholder="Como você quer ser chamado?" maxlength="40" required>
+
+        <label for="room-input">Código da sala</label>
+        <input id="room-input" type="text" placeholder="ex: cinema-da-galera" maxlength="40" required>
+
+        <button type="submit">Entrar na sala</button>
+      </form>
+      <p class="hint">Se a sala não existir, ela será criada automaticamente. Compartilhe o mesmo código com quem você quer chamar.</p>
+    </div>
+  </div>
+
+  <!-- Sala -->
+  <div id="room-screen" class="screen hidden">
+    <div class="room-layout">
+      <div class="video-area">
+        <div id="player"></div>
+        <div id="host-controls" class="hidden">
+          <input id="video-url-input" type="text" placeholder="Cole o link do YouTube aqui...">
+          <button id="load-video-btn">Carregar vídeo</button>
+        </div>
+        <p id="no-host-msg" class="hint hidden">Aguardando o host escolher um vídeo...</p>
+      </div>
+
+      <div class="sidebar">
+        <h3>Sala: <span id="room-name-display"></span></h3>
+        <h4>Participantes (<span id="participant-count">0</span>)</h4>
+        <ul id="participant-list"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="client.js"></script>
+</body>
+</html>
