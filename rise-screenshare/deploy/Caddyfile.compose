@@ -1,0 +1,3 @@
+rise.exemplo.com {
+	reverse_proxy rise:4173
+}

@@ -1,0 +1,5 @@
+# HTTPS automático (Let's Encrypt) + proxy para o Rise. Troque o domínio.
+# O Caddy já repassa o Host, o WebSocket e o X-Forwarded-For; rode o Rise com TRUST_PROXY=1.
+rise.exemplo.com {
+	reverse_proxy 127.0.0.1:4173
+}

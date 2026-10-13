@@ -1,0 +1,30 @@
+# Exemplo completo: Rise + HTTPS (Caddy) + TURN (coturn). Ajuste domínios e segredos antes de usar.
+services:
+  rise:
+    build: ..
+    restart: unless-stopped
+    environment:
+      TRUST_PROXY: "1"
+      TURN_URLS: "turn:turn.exemplo.com:3478,turns:turn.exemplo.com:5349?transport=tcp"
+      TURN_SECRET: "TROQUE_POR_UM_SEGREDO_LONGO"
+    volumes:
+      - rise-data:/app/data
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    volumes:
+      - ./Caddyfile.compose:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+
+  coturn:
+    image: coturn/coturn
+    restart: unless-stopped
+    network_mode: host   # relay precisa das portas UDP diretas do host
+    volumes:
+      - ./turnserver.conf:/etc/coturn/turnserver.conf:ro
+
+volumes:
+  rise-data:
+  caddy-data:

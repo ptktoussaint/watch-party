@@ -1,0 +1,20 @@
+{
+  "name": "rise-screenshare",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Transmissão de tela em salas, com WebRTC ponto a ponto e servidor de sinalização próprio",
+  "main": "server.js",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.mjs",
+    "test:e2e": "node test/e2e.mjs",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "playwright": "^1.50.0"
+  }
+}
